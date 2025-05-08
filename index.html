@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Own Adventure: The Lost Artifact</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .scene {
+            display: none;
+        }
+        .scene#start {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="container max-w-2xl mx-auto bg-white rounded-lg shadow-md p-8">
+        <h1 class="text-3xl font-semibold text-blue-600 text-center mb-6">The Lost Artifact</h1>
+        <div id="start" class="scene">
+            <p class="text-gray-700 mb-4">
+                You are a brave adventurer seeking a legendary artifact hidden deep within a mysterious island. Your journey begins at the island's shore.
+            </p>
+            <p class="text-gray-700 mb-4">
+                Before you are two paths: a dense jungle to the east and a dark cave to the west. Which path do you choose?
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="goToScene('jungle')" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Enter the Jungle</button>
+                <button onclick="goToScene('cave')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enter the Cave</button>
+            </div>
+        </div>
+        <div id="jungle" class="scene">
+            <h2 class="text-2xl font-semibold text-green-600 mb-4">The Jungle Path</h2>
+            <p class="text-gray-700 mb-4">
+                The jungle is thick and humid.  You hear strange noises in the undergrowth.  As you venture deeper, you find a fork in the path.
+            </p>
+             <p class="text-gray-700 mb-4">
+                One path leads to an ancient temple, the other to a seemingly abandoned village.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="goToScene('temple')" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Go to the Temple</button>
+                <button onclick="goToScene('village')" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Go to the Village</button>
+            </div>
+        </div>
+        <div id="cave" class="scene">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">The Cave Path</h2>
+            <p class="text-gray-700 mb-4">
+                The cave is cold and dark.  Water drips from the ceiling.  You feel a sense of unease as you go deeper.
+            </p>
+            <p class="text-gray-700 mb-4">
+               The path splits. One way is illuminated by a faint light, the other is shrouded in complete darkness.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="goToScene('light')" class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">Follow the Light</button>
+                <button onclick="goToScene('darkness')" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded">Enter the Darkness</button>
+            </div>
+        </div>
+        <div id="temple" class="scene">
+            <h2 class="text-2xl font-semibold text-yellow-600 mb-4">The Ancient Temple</h2>
+            <p class="text-gray-700 mb-4">
+                You enter a magnificent temple, filled with ancient carvings and the scent of incense.  In the center, you find a pedestal... and the artifact!
+            </p>
+            <p class="text-gray-700 mb-4">
+                You have found the artifact!  Your quest is complete!
+            </p>
+            <button onclick="goToScene('start')" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Return to Start</button>
+        </div>
+        <div id="village" class="scene">
+            <h2 class="text-2xl font-semibold text-purple-600 mb-4">The Abandoned Village</h2>
+            <p class="text-gray-700 mb-4">
+                The village is eerily silent.  You find clues that suggest the villagers left in a hurry, long ago. The artifact is nowhere to be found.
+            </p>
+            <p class="text-gray-700 mb-4">
+                You find a map that hints the artifact is in a cave.
+            </p>
+             <button onclick="goToScene('cave')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enter the Cave</button>
+        </div>
+        <div id="light" class="scene">
+            <h2 class="text-2xl font-semibold text-orange-600 mb-4">The Light Path</h2>
+            <p class="text-gray-700 mb-4">
+                You follow the light and discover a hidden chamber. Inside, you see the artifact glowing brightly.
+            </p>
+            <p class="text-gray-700 mb-4">
+                 You have found the artifact! Your quest is complete!
+            </p>
+            <button onclick="goToScene('start')" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Return to Start</button>
+        </div>
+        <div id="darkness" class="scene">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">The Darkness Path</h2>
+            <p class="text-gray-700 mb-4">
+                You stumble through the darkness, your hand outstretched.  You feel a cold, smooth object... it's the artifact!
+            </p>
+            <p class="text-gray-700 mb-4">
+                You have found the artifact! Your quest is complete!
+            </p>
+            <button onclick="goToScene('start')" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">Return to Start</button>
+        </div>
+    </div>
+    <script>
+        function goToScene(sceneName) {
+            document.querySelectorAll('.scene').forEach(scene => {
+                scene.style.display = 'none';
+            });
+            document.getElementById(sceneName).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
+
 
